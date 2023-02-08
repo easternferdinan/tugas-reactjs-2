@@ -1,15 +1,25 @@
-import Navbar from './components/Navbar';
-import Welcome from './components/Welcome';
-import Footer from './components/Footer';
+// COMMENT DAN UNCOMMENT BAGIAN UNTUK PREVIEW TUGAS
 
-function App({name}) {
+// Tugas Basic Component
+// import BasicComponents from "./components/basic_components/BasicComponents";
+
+// function App() {
+//   return (
+//     <div>
+//       <BasicComponents />
+//     </div>
+//   );
+// }
+
+// export default App;
+// ---------------------------------------
+
+// Tugas Styling Components
+import StylingComponents from "./components/styling_components/StylingComponents";
+
+export default function App() {
   return (
-    <div>
-      <Navbar />
-      <Welcome name={name}/>
-      <Footer />
-    </div>
-  );
+    <StylingComponents />
+  )
 }
-
-export default App;
+// ---------------------------------------
