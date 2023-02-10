@@ -1,0 +1,18 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px
+}
+
+.genderRadio, .form > input, select {
+    width: 300px;
+}
