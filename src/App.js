@@ -25,11 +25,27 @@
 // ---------------------------------------
 
 // Tugas Form Validation
-import React from "react";
-import FormValidation from "./components/c_form_validation";
+// import React from "react";
+// import FormValidation from "./components/c_form_validation";
 
-export default class App extends React.Component {
-  render() {
-    return <FormValidation />;
-  }
+// export default class App extends React.Component {
+//   render() {
+//     return <FormValidation />;
+//   }
+// }
+// -----------------------------------------
+
+// Tugas News Portal
+import React, { Component } from "react";
+import NewsPortal from "./components/d_news_portal/";
+
+export default class App extends Component {
+    render() {
+        return (
+            <div>
+                <NewsPortal />
+            </div>
+        );
+    }
 }
+// -----------------------------------------
