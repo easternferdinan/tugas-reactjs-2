@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./style/searchbar.css";
 
 export default class SearchBar extends Component {
-    sendSearch = (event) => {
+    sendSearch = event => {
         event.preventDefault();
         console.log("search: " + event.target.searchbar.value);
         this.props.handleSearch(event.target.searchbar.value);
@@ -15,7 +15,7 @@ export default class SearchBar extends Component {
                     className="search-bar"
                     type="text"
                     name="searchbar"
-                    placeholder="Search..."
+                    placeholder="Search by full name (case sensitive)"
                 />
                 <button className="search-bar-submit" type="submit">
                     Search

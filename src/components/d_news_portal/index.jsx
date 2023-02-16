@@ -6,51 +6,77 @@ import "./style/index.css";
 export default class NewsPortal extends Component {
     constructor() {
         super();
-        this.state = false;
+        this.state = {
+            users: null,
+        };
     }
 
     componentDidMount() {
-        const fetchData = fetch(
-            "https://newsapi.org/v2/top-headlines?country=id&apiKey=a63cac178c6b4ee094b6d5988a9f0e51"
-        );
+        const fetchData = fetch("https://jsonplaceholder.typicode.com/users");
 
         fetchData
-            .then((response) => response.json())
-            .then((data) => this.setState(data))
-            .catch((error) => console.error(error));
+            .then(response => response.json())
+            .then(data =>
+                this.setState({ users: data }, () => console.log(data))
+            )
+            .catch(error => console.error(error));
     }
 
-    getSearch = (query) => {
+    getSearch = query => {
         console.log("update " + query);
+        // this.setState({ users: null });
+        console.log("state" + this.state);
         if (query.length > 0) {
             const fetchData = fetch(
-                `https://newsapi.org/v2/everything?q=${query}&from=2023-01-31&sortBy=popularity&apiKey=a63cac178c6b4ee094b6d5988a9f0e51`
+                `https://jsonplaceholder.typicode.com/users?name=${query}`
             );
 
             fetchData
-                .then((response) => response.json())
-                .then((data) => this.setState(data))
-                .catch((error) => console.error(error));
+                .then(response => response.json())
+                .then(data =>
+                    this.setState({ users: data }, () => console.log(data))
+                )
+                .catch(error => console.error(error));
         } else {
             this.componentDidMount();
         }
     };
 
+    // cardRender() {
+    //     console.log(this.state);
+    //     if (this.state) {
+    //         return this.state.articles.map((data, index) => {
+    //             return (
+    //                 <Card
+    //                     key={index}
+    //                     title={data.title}
+    //                     description={data.description}
+    //                     thumbnail={data.urlToImage}
+    //                     url={data.url}
+    //                     date={data.publishedAt}
+    //                 />
+    //             );
+    //         });
+    //     }
+    // }
+
     cardRender() {
-        console.log(this.state);
+        console.log("update");
         if (this.state) {
-            return this.state.articles.map((data, index) => {
-                return (
+            const cards = [];
+            const data = this.state.users;
+            for (const key in data) {
+                // console.log(this.state);
+                cards.push(
                     <Card
-                        key={index}
-                        title={data.title}
-                        description={data.description}
-                        thumbnail={data.urlToImage}
-                        url={data.url}
-                        date={data.publishedAt}
+                        key={key}
+                        name={data[key].name}
+                        email={data[key].email}
+                        address={`${data[key].address.street}, ${data[key].address.suite}, ${data[key].address.city}, ${data[key].address.zipcode}`}
                     />
                 );
-            });
+            }
+            return cards;
         }
     }
 
@@ -58,7 +84,7 @@ export default class NewsPortal extends Component {
         console.log("render");
         return (
             <div>
-                <h1 className="header">News Portal</h1>
+                <h1 className="header">User List</h1>
                 <SearchBar handleSearch={this.getSearch} />
                 <main>{this.cardRender()}</main>
             </div>
